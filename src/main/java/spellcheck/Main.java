@@ -11,9 +11,9 @@ public class Main {
 	public static void main(String[] args) {
 	
 		try {
-			DocumentSource urlDocumentSource = new DocumentFactory().getDoc();
-			DictionarySource dictionarySource = new DictionaryFactory("dict.txt").getDictionary();
-			SourceExtractor extractor = new SourceFactory("\\p{Alpha}+","\\p{Alpha}+").getSourceExtractor();
+			URLDocumentSource urlDocumentSource = new URLDocumentSource();
+			DictionarySource dictionarySource = new FileDictionary("dict.txt");
+			WordExtractor extractor = new WordExtractor("\\p{Alpha}+","\\p{Alpha}+");
 			SpellingChecker checker = new SpellingChecker(urlDocumentSource,dictionarySource,extractor);
 			SortedMap<String, Integer> mistakes = checker.check(args[0]);
 			System.out.println(mistakes);
